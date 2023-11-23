@@ -6,7 +6,7 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import ResultDetail from "../components/ResultDetail";
+import ResultDetail from "./ResultDetail";
 
 export default function ResultsList({ title, results }) {
   return (

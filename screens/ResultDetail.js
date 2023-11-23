@@ -4,7 +4,7 @@ import React from "react";
 export default function ResultDetail({ result }) {
   return (
     <View>
-      <Text>{result}</Text>
+      <Text>{result.alias}</Text>
     </View>
   );
 }

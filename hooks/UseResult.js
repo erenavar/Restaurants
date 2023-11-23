@@ -11,8 +11,10 @@ export default () => {
         location: "Utrecht",
       },
     });
+
     setResults(response.data.businesses);
   };
+
   useEffect(() => {
     searchApi("Burger");
   }, []);

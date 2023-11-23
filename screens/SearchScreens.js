@@ -5,11 +5,16 @@ import UseResult from "../hooks/UseResult";
 import ResultsList from "./ResultsList";
 
 export default function SearchScreens() {
-  const [searchApi, results] = UseResult();
+  const [searchApi,results] = UseResult();
+
+  // results.filter((result) => {
+  //   result.filter((t) => t.price == price);
+  // });
+  // };
 
   const filterResultsByPrice = (price) => {
-    return results.filter((result) => {
-      return result.price === price;
+    return results?.filter((result) => {
+      return result.price == price;
     });
   };
 
@@ -18,15 +23,15 @@ export default function SearchScreens() {
       <SearchBar />
       <ResultsList
         title="Low Price Restaurants"
-        filter={filterResultsByPrice("€")}
+        results={filterResultsByPrice("€")}
       />
       <ResultsList
         title="Affordable Restaurants"
-        filter={filterResultsByPrice("€€")}
+        results={filterResultsByPrice("€€")}
       />
       <ResultsList
         title="High Price Restaurants"
-        filter={filterResultsByPrice("€€€")}
+        results={filterResultsByPrice("€€€")}
       />
     </View>
   );
