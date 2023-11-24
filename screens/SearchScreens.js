@@ -1,26 +1,26 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
-import UseResult from "../hooks/UseResult";
+import  UseResult  from "../hooks/UseResult";
 import ResultsList from "./ResultsList";
 
 export default function SearchScreens() {
-  const [searchApi,results] = UseResult();
-
-  // results.filter((result) => {
-  //   result.filter((t) => t.price == price);
-  // });
-  // };
+  const [searchApi, results] = UseResult();
+  const [term, setTerm] = useState("");
 
   const filterResultsByPrice = (price) => {
-    return results?.filter((result) => {
+    return results.filter((result) => {
       return result.price == price;
     });
   };
 
   return (
     <View>
-      <SearchBar />
+      <SearchBar
+        term={term}
+        onTermChange={setTerm}
+        onTermSubmit={() => searchApi(term)}
+      />
       <ResultsList
         title="Low Price Restaurants"
         results={filterResultsByPrice("€")}
