@@ -21,8 +21,10 @@ export default function SearchScreens() {
         onTermChange={setTerm}
         onTermSubmit={() => searchApi(term)}
       />
-      {errorMessage ? 
-        <Text>{errorMessage}</Text> : <>
+      {errorMessage ? (
+        <Text>{errorMessage}</Text>
+      ) : (
+        <>
           {results.length == 0 ? (
             <></>
           ) : (
@@ -42,7 +44,7 @@ export default function SearchScreens() {
             </>
           )}
         </>
-      }
+      )}
     </View>
   );
 }
