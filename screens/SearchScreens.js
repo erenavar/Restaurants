@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
-import  UseResult  from "../hooks/UseResult";
+import UseResult from "../hooks/UseResult";
 import ResultsList from "./ResultsList";
 
 export default function SearchScreens() {
-  const [searchApi, results] = UseResult();
+  const [searchApi, results, errorMessage] = UseResult();
   const [term, setTerm] = useState("");
 
   const filterResultsByPrice = (price) => {
@@ -21,18 +21,28 @@ export default function SearchScreens() {
         onTermChange={setTerm}
         onTermSubmit={() => searchApi(term)}
       />
-      <ResultsList
-        title="Low Price Restaurants"
-        results={filterResultsByPrice("€")}
-      />
-      <ResultsList
-        title="Affordable Restaurants"
-        results={filterResultsByPrice("€€")}
-      />
-      <ResultsList
-        title="High Price Restaurants"
-        results={filterResultsByPrice("€€€")}
-      />
+      {errorMessage ? 
+        <Text>{errorMessage}</Text> : <>
+          {results.length == 0 ? (
+            <></>
+          ) : (
+            <>
+              <ResultsList
+                title="Low Price Restaurants"
+                results={filterResultsByPrice("€")}
+              />
+              <ResultsList
+                title="Affordable Restaurants"
+                results={filterResultsByPrice("€€")}
+              />
+              <ResultsList
+                title="High Price Restaurants"
+                results={filterResultsByPrice("€€€")}
+              />
+            </>
+          )}
+        </>
+      }
     </View>
   );
 }
